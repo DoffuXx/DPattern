@@ -15,7 +15,15 @@ const UmlTables = [ {title: 'Circle', attributes: [{name: 'radius', type: 'int',
 const nodeTypes = {
     uml: UmlNode,
 };
-const initialNodes = [
+type NodeData = {
+    id: string;
+    data: { label: string;
+     attributes?: { name: string; type: string; visibility: string }[] | undefined ;
+        methods?: { name: string; type: string; visibility: string }[] | undefined;}
+    position: { x: number; y: number };
+    type?: string;
+};
+const initialNodes:NodeData[] = [
     {
         id: '1',
         data: {label: 'Circle'},
@@ -40,8 +48,10 @@ const initialNodes = [
     {
         id: '5',
         data: {
-            label: 'Shapetest',
-            attributes: [{name: 'name', type: 'String', visibility: 'public'}] // add attributes field
+            label: 'exemple',
+            attributes: [{name: 'name', type: 'String', visibility: '+'},
+                {name: 'name', type: 'String', visibility: '+'}], // add attributes field
+            methods: [{name: 'name', type: 'String', visibility: '+'}],
         },
          position: {x: 600, y: 500},
         type: 'uml',
