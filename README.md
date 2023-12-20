@@ -4,6 +4,11 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 DPATERRN is a web application that allows users to visualize design patterns and explore their corresponding code implementations. The project is built using React.js, React Flow, and TypeScript.
+## WIP
+
+![image](https://github.com/Touil-Ali/DPattern/assets/96635567/335a6c18-a089-4e43-8bf1-fa3fbd2b2487)
+
+
 
 ## Table of Contents
 
