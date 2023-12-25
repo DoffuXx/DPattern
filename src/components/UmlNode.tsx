@@ -1,5 +1,6 @@
 import React from 'react';
 import {Handle, NodeProps, Position} from 'reactflow';
+import CodeDisplayComponent from "./CodeDisplayComponent";
 
 const handleStyle = {  };
 interface UmlNodeData {
@@ -8,11 +9,23 @@ interface UmlNodeData {
     attributes: { name: string; type: string; visibility: string; }[];
     methods: { name: string; type: string; visibility: string; }[];
 }
+let ClickedNodeDisplay = true;
 const UmlNode: React.FC<NodeProps<UmlNodeData>> = (props) => {
     const { data } = props;
+    const ClickedNode = () => {
+        console.log(ClickedNodeDisplay)
+        if(ClickedNodeDisplay){
+            ClickedNodeDisplay = false
+            return false
+        } else {
+            ClickedNodeDisplay = true
+
+            return true
+        }
+    }
     return (
 
-        <div>
+        <div onClick={ClickedNode}>
             <Handle type="target" position={Position.Top}/>
 
 

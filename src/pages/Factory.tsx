@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import ReactFlow, {
     addEdge,
     Background,
@@ -11,10 +11,12 @@ import ReactFlow, {
 } from "reactflow";
 import UmlNode  from "../components/UmlNode";
 import 'reactflow/dist/style.css';
+import CodeDisplayComponent from "../components/CodeDisplayComponent";
 const UmlTables = [ {title: 'Circle', attributes: [{name: 'radius', type: 'int', visibility: 'private'}]}];
 const nodeTypes = {
     uml: UmlNode,
 };
+
 type NodeData = {
     id: string;
     data: { label: string;
@@ -22,6 +24,7 @@ type NodeData = {
         methods?: { name: string; type: string; visibility: string }[] | undefined;}
     position: { x: number; y: number };
     type?: string;
+    isClicked?: boolean;
 };
 const initialNodes:NodeData[] = [
     {
@@ -85,9 +88,14 @@ const Factory = () => {
 
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [clickedNode, setClickedNode] = useState<NodeData | null>(null); // Add this line
+    const [isOpen,setIsOpen] = useState(true);
 
-
-
+    const handleNodeClick = (event: React.MouseEvent, element: NodeData) => {
+                    if (element.type === 'uml') {
+                        setClickedNode((prev) => (prev?.id === element.id ? null : element));
+                    }
+                } 
     const onConnect = useCallback(
         (params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds)),
         [setEdges],
@@ -100,12 +108,17 @@ const Factory = () => {
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
                 nodeTypes={nodeTypes}
+                onNodeClick={handleNodeClick}
 
             >
                 <Controls />
                 <MiniMap />
                 <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
             </ReactFlow>
+            {clickedNode && (
+              <CodeDisplayComponent  onClose={ () => setClickedNode(null)} />
+            )}  
+      
         </div>
     );
 };
