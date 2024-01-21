@@ -14,12 +14,12 @@ type NodeData = {
   position: { x: number; y: number };
   type?: string;
   isClicked?: boolean;
+  code?: string | "No Code Available";
 };
 
 interface CodeDisplayComponentProps {
   node: NodeData;
   onClose: () => void;
-  code: string;
   language: string;
   showLineNumbers: boolean;
 }
@@ -33,7 +33,6 @@ const themes = [
 const CodeDisplayComponent: React.FC<CodeDisplayComponentProps> = ({
   node,
   onClose,
-  code,
   language,
   showLineNumbers,
 }) => {
@@ -67,7 +66,7 @@ const CodeDisplayComponent: React.FC<CodeDisplayComponentProps> = ({
                 </button>
               </div>
               <CopyBlock
-                text={code}
+                text={node.code || "No Code Available"}
                 language={language}
                 showLineNumbers={showLineNumbers}
                 theme={theme}
