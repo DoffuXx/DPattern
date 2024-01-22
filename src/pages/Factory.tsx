@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import ReactFlow, {
   addEdge,
   Background,
+  MarkerType,
   BackgroundVariant,
   Connection,
   Controls,
@@ -218,6 +219,13 @@ const initialEdges = [
     target: "3",
     label: "implementes",
     animated: true,
+  },
+  {
+    id: "e6-5",
+    source: "6",
+    target: "5",
+    label: "uses",
+    markerEnd: { type: MarkerType.Arrow, color: "#FFCC00" },
   },
 ];
 const Factory = () => {
