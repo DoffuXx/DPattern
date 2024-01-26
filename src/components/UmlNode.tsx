@@ -5,9 +5,10 @@ import CodeDisplayComponent from "./CodeDisplayComponent";
 const handleStyle = {};
 interface UmlNodeData {
   id: string;
-  label: string;
+  label: string | null;
   attributes: { name: string; type: string; visibility: string }[];
   methods: { name: string; type: string; visibility: string }[];
+  extent?: string;
 }
 let ClickedNodeDisplay = true;
 const UmlNode: React.FC<NodeProps<UmlNodeData>> = (props) => {

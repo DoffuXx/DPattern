@@ -1,10 +1,13 @@
+import { type } from "os";
 import React, { useCallback, useState } from "react";
 import ReactFlow, {
+  Node,
   addEdge,
   Background,
   MarkerType,
   BackgroundVariant,
   Connection,
+  CoordinateExtent,
   Controls,
   Edge,
   MiniMap,
@@ -81,16 +84,17 @@ let FactoyPatternDemoCode = `public class FactoryPatternDemo {
 type NodeData = {
   id: string;
   data: {
-    label: string;
+    label: string | null;
     attributes?:
       | { name: string; type: string; visibility: string }[]
       | undefined;
     methods?: { name: string; type: string; visibility: string }[] | undefined;
   };
   position: { x: number; y: number };
-  type?: string;
+  type?: Node["type"];
   isClicked?: boolean;
   parentNode?: string;
+  extent?: "parent" | CoordinateExtent;
   style?: any;
   code?: string;
 };
@@ -106,10 +110,12 @@ const initialNodes: NodeData[] = [
       methods: [{ name: "draw()", type: "void", visibility: "+" }],
     },
     code: CircleCode,
+    parentNode: "8",
 
     type: "uml",
+    extent: "parent",
 
-    position: { x: 400, y: 300 },
+    position: { x: 10, y: 250 },
   },
   {
     id: "2",
@@ -124,8 +130,10 @@ const initialNodes: NodeData[] = [
 
     type: "uml",
     code: SquareCode,
+    parentNode: "8",
+    extent: "parent",
 
-    position: { x: 800, y: 300 },
+    position: { x: 450, y: 250 },
   },
   {
     id: "3",
@@ -138,8 +146,10 @@ const initialNodes: NodeData[] = [
       methods: [{ name: "draw()", type: "void", visibility: "+" }],
     },
     code: ractangleCode,
+    parentNode: "8",
     type: "uml",
-    position: { x: 600, y: 300 },
+    extent: "parent",
+    position: { x: 230, y: 250 },
   },
   {
     id: "4",
@@ -153,7 +163,9 @@ const initialNodes: NodeData[] = [
     },
     type: "uml",
     code: ShapeCode,
-    position: { x: 600, y: 100 },
+    parentNode: "8",
+    extent: "parent",
+    position: { x: 230, y: 50 },
   },
   {
     id: "5",
@@ -196,6 +208,18 @@ const initialNodes: NodeData[] = [
     },
     position: { x: 900, y: 500 },
     type: "uml",
+  },
+  {
+    id: "8",
+    data: { label: "Factory Pattern" },
+    position: { x: 0, y: 0 },
+    style: {
+      border: "2px solid #000",
+      width: 600,
+      zIndex: -1,
+
+      height: 450,
+    },
   },
 ];
 const initialEdges = [

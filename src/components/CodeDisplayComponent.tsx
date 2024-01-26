@@ -5,7 +5,7 @@ import { getThemeByName } from "../utils/themeUtils";
 type NodeData = {
   id: string;
   data: {
-    label: string;
+    label: string | null;
     attributes?:
       | { name: string; type: string; visibility: string }[]
       | undefined;
@@ -62,7 +62,7 @@ const CodeDisplayComponent: React.FC<CodeDisplayComponentProps> = ({
                     setIsOpen(false);
                   }}
                 >
-                  close modal
+                  close
                 </button>
               </div>
               <CopyBlock
