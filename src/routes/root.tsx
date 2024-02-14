@@ -37,7 +37,7 @@ export default function Root() {
           <a href="#" className="flex items-center">
             <img
               src="/img/logo/dpattern.svg"
-              className="w-56 h-40 object-contain	   "
+              className="w-56 h-40 overflow-auto"
               alt="DPattern Logo"
             />
           </a>
@@ -124,4 +124,3 @@ export default function Root() {
     </div>
   );
 }
-

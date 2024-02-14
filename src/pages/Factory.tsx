@@ -1,5 +1,5 @@
 import { type } from "os";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   Node,
   addEdge,
@@ -14,6 +14,8 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
 } from "reactflow";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "reactflow/dist/style.css";
 import CodeDisplayComponent from "../components/CodeDisplayComponent";
 import UmlNode from "../components/UmlNode";
@@ -177,7 +179,7 @@ const initialNodes: NodeData[] = [
       ], // add attributes field
       methods: [{ name: "getShape()", type: "Shape", visibility: "+" }],
     },
-    position: { x: 1000, y: 300 },
+    position: { x: 700, y: 500 },
     code: ShapeFactoryCode,
     type: "uml",
   },
@@ -191,24 +193,24 @@ const initialNodes: NodeData[] = [
       ], // add attributes field
       methods: [{ name: "main()", type: "void", visibility: "+" }],
     },
-    position: { x: 1000, y: 100 },
+    position: { x: 700, y: 100 },
     code: FactoyPatternDemoCode,
     type: "uml",
   },
 
-  {
-    id: "7",
-    data: {
-      label: "exemple",
-      attributes: [
-        { name: "name", type: "String", visibility: "+" },
-        { name: "name", type: "String", visibility: "+" },
-      ], // add attributes field
-      methods: [{ name: "name", type: "String", visibility: "+" }],
-    },
-    position: { x: 900, y: 500 },
-    type: "uml",
-  },
+  // {
+  //   id: "7",
+  //   data: {
+  //     label: "exemple",
+  //     attributes: [
+  //       { name: "name", type: "String", visibility: "+" },
+  //       { name: "name", type: "String", visibility: "+" },
+  //     ], // add attributes field
+  //     methods: [{ name: "name", type: "String", visibility: "+" }],
+  //   },
+  //   position: { x: 900, y: 500 },
+  //   type: "uml",
+  // },
   {
     id: "8",
     data: { label: "Factory Pattern" },
@@ -251,8 +253,33 @@ const initialEdges = [
     label: "uses",
     markerEnd: { type: MarkerType.Arrow, color: "#FFCC00" },
   },
+  {
+    id: "e8-5",
+    source: "8",
+    target: "5",
+    label: "creates",
+    animated: false,
+  },
 ];
 const Factory = () => {
+  useEffect(() => {
+    const notify = () =>
+      toast(
+        "🚀 Explore the code by clicking on the Title Node. Happy coding!",
+        {
+          position: "bottom-right",
+          autoClose: 8000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        },
+      );
+    notify();
+  }, []);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [clickedNode, setClickedNode] = useState<NodeData | null>(null); // Add this line
@@ -289,6 +316,19 @@ const Factory = () => {
           showLineNumbers={true}
         />
       )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 };
