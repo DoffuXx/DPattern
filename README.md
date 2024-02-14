@@ -36,7 +36,7 @@ DPATERRN is a web application that allows users to visualize design patterns and
 
 ## Demo
 
-Check out the live demo .
+Check out the live demo [here](https://d-pattern.vercel.app/).
 [![DPATERRN Demo](demo.gif)](https://d-pattern.vercel.app/)
 
 ## Installation
