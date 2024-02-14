@@ -1,14 +1,27 @@
 # DPATTERN
+
+<!--toc:start-->
+
+- [DPATTERN](#dpattern)
+  - [WIP](#wip)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Demo](#demo)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
+  <!--toc:end-->
+
 ![3](https://github.com/Touil-Ali/DPattern/assets/96635567/3e94e0e2-5e0b-4db3-a714-d847fda7f9f0)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 DPATERRN is a web application that allows users to visualize design patterns and explore their corresponding code implementations. The project is built using React.js, React Flow, and TypeScript.
+
 ## WIP
 
 ![image](https://github.com/Touil-Ali/DPattern/assets/96635567/335a6c18-a089-4e43-8bf1-fa3fbd2b2487)
-
-
 
 ## Table of Contents
 
@@ -27,11 +40,13 @@ DPATERRN is a web application that allows users to visualize design patterns and
 - Written in TypeScript for enhanced code maintainability.
 
 ## Demo
+
 still not (
 [![DPATERRN Demo](demo.gif)](https://your-demo-link-here)
 
 Check out the live demo [here](https://your-demo-link-here).
 )
+
 ## Installation
 
 To run DPATERRN locally, follow these steps:
@@ -40,12 +55,15 @@ To run DPATERRN locally, follow these steps:
 
    ```bash
    git clone https://github.com/TouilAli/DPATTERN.git
+   ```
 
+## Usage
 
-##  Usage
 Open your browser and navigate to http://localhost:3000.
 Explore the design patterns visually and click to view their code implementations.
-##  Contributing
+
+## Contributing
+
 If you'd like to contribute to DPATERRN, please follow these guidelines:
 
 Fork the repository.
@@ -53,5 +71,6 @@ Create a new branch for your feature or bug fix.
 Make your changes and submit a pull request.
 We welcome contributions from the community!
 
-##  License
+## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
