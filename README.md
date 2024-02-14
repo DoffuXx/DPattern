@@ -3,7 +3,6 @@
 <!--toc:start-->
 
 - [DPATTERN](#dpattern)
-  - [WIP](#wip)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Demo](#demo)
@@ -19,10 +18,6 @@
 
 DPATERRN is a web application that allows users to visualize design patterns and explore their corresponding code implementations. The project is built using React.js, React Flow, and TypeScript.
 
-## WIP
-
-![image](https://github.com/Touil-Ali/DPattern/assets/96635567/335a6c18-a089-4e43-8bf1-fa3fbd2b2487)
-
 ## Table of Contents
 
 - [Features](#features)
@@ -36,16 +31,13 @@ DPATERRN is a web application that allows users to visualize design patterns and
 
 - Visualize design patterns with an interactive UI.
 - Click on patterns to view corresponding code implementations.
-- Built with ❤️ React.js ❤️ and ❤️ React Flow ❤️ for a smooth user experience.
+- Built with React.js and React Flow for a smooth user experience.
 - Written in TypeScript for enhanced code maintainability.
 
 ## Demo
 
-still not (
-[![DPATERRN Demo](demo.gif)](https://your-demo-link-here)
-
-Check out the live demo [here](https://your-demo-link-here).
-)
+Check out the live demo .
+[![DPATERRN Demo](demo.gif)](https://d-pattern.vercel.app/)
 
 ## Installation
 
