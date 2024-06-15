@@ -1,6 +1,5 @@
 import React from "react";
 import { Handle, NodeProps, Position } from "reactflow";
-import CodeDisplayComponent from "./CodeDisplayComponent";
 
 const handleStyle = {};
 interface UmlNodeData {
@@ -90,4 +89,3 @@ const UmlNode: React.FC<NodeProps<UmlNodeData>> = (props) => {
 };
 
 export default UmlNode;
-

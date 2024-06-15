@@ -1,4 +1,3 @@
-import { type } from "os";
 import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   Node,
@@ -17,8 +16,6 @@ import ReactFlow, {
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "reactflow/dist/style.css";
-import CodeDisplayComponent from "../components/CodeDisplayComponent";
-import UmlNode from "../components/UmlNode";
 import {
   CircleCode,
   FactoyPatternDemoCode,
@@ -26,7 +23,8 @@ import {
   ShapeCode,
   ShapeFactoryCode,
   SquareCode,
-} from "../constants/FactoryCode";
+} from "@/constants/FactoryCode";
+import { UmlNode, CodeDisplayComponent } from "../components";
 const nodeTypes = {
   uml: UmlNode,
 };

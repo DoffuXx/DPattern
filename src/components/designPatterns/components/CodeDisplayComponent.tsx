@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import { CopyBlock, dracula } from "react-code-blocks";
-import { getThemeByName } from "../utils/themeUtils";
+import { getThemeByName } from "@/utils/themeUtils";
 type NodeData = {
   id: string;
   data: {
