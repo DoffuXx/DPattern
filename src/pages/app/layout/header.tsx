@@ -53,7 +53,10 @@ const Header = () => {
           <div className="relative ">
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline">Search Pattern 🧑‍🔧.. ⌘K</Button>
+                <Button variant="outline" size="lg" className="h-8 pr-1 pl-3">
+                  <span className="mr-8">Search Pattern 🧑‍🔧 ..</span>
+                  <span className="bg-accent rounded-sm">⌘K</span>
+                </Button>
               </DialogTrigger>
 
               <DialogPortal>
