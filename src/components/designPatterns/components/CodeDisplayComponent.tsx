@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-import Popup from "reactjs-popup";
 import { CopyBlock, dracula } from "react-code-blocks";
 import { getThemeByName } from "@/utils/themeUtils";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 type NodeData = {
   id: string;
   data: {
@@ -51,43 +60,50 @@ const CodeDisplayComponent: React.FC<CodeDisplayComponentProps> = ({
     <div>
       {isOpen && (
         <>
-          <Popup open={true} modal>
-            <div className="relative p-4 w-auto bg-white rounded-lg shadow md:p-8 content-center">
-              <div className="flex justify-between items-center">
-                <span className="font-bold uppercase"> {node.data.label}</span>
-                <button
-                  className="py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 sm:w-auto hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600 mb-4"
-                  onClick={() => {
-                    console.log("modal closed ");
-                    setIsOpen(false);
-                  }}
-                >
-                  close
-                </button>
-              </div>
-              <CopyBlock
-                text={node.code || "No Code Available"}
-                language={language}
-                showLineNumbers={showLineNumbers}
-                theme={theme}
-              />
-              <div>
-                <span>Select Theme:</span>
+          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline">Edit Profile</Button>
+            </DialogTrigger>
+            <DialogContent className="w-3/4">
+              <DialogHeader>
+                <DialogTitle>{node.data.label}</DialogTitle>
+                {/* <DialogDescription> */}
+                {/*   Make changes to your profile here. Click save when you're */}
+                {/*   done. */}
+                {/* </DialogDescription> */}
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <CopyBlock
+                  text={node.code || "No Code Available"}
+                  language={language}
+                  showLineNumbers={showLineNumbers}
+                  theme={theme}
+                />
+
                 <div>
-                  <select
-                    value={theme.lineNumberColor}
-                    onChange={handelChangeTheme}
-                  >
-                    {themes.map((theme) => (
-                      <option key={theme.value} value={theme.value}>
-                        {theme.label}
-                      </option>
-                    ))}
-                  </select>
+                  <span>Select Theme:</span>
+                  <div>
+                    <select
+                      value={theme.lineNumberColor}
+                      onChange={handelChangeTheme}
+                      className="border border-gray-300 rounded-md"
+                    >
+                      {themes.map((theme) => (
+                        <option key={theme.value} value={theme.value}>
+                          {theme.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Popup>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </>
       )}
     </div>
