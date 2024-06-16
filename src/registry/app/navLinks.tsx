@@ -9,7 +9,7 @@ const navLinks: NavLinks[] = [
     subLinks: [
       {
         title: "Factory",
-        path: "/factory",
+        path: "factory",
         icon: IconBuildingFactory2,
         element: <Factory />,
       },

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./header";
 import SideMenu from "./sideMenu";
 
-const Layout = () => {
+const LayoutApp = () => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default LayoutApp;

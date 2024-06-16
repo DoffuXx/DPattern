@@ -42,7 +42,7 @@ const Header = () => {
     <header className="sticky font-work-sans z-50 top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className=" flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         <div className="text-foreground transition-colors hover:text-foreground  ">
-          <Link to="" className="flex space-x-3 align-items">
+          <Link to="/" className="flex space-x-3 align-items">
             <img src="/img/logo/dpatternicon.png" className="h-6 w-6" alt="" />
             <span className="text-sm md:text-xl font-bold ">DPattern</span>
           </Link>
@@ -55,7 +55,7 @@ const Header = () => {
               <DialogTrigger asChild>
                 <Button variant="outline" size="lg" className="h-8 pr-1 pl-3">
                   <span className="mr-8">Search Pattern 🧑‍🔧 ..</span>
-                  <span className="bg-accent rounded-sm">⌘K</span>
+                  <span className="bg-accent rounded-sm p-0.5">⌘K</span>
                 </Button>
               </DialogTrigger>
 
@@ -69,7 +69,7 @@ const Header = () => {
                         {link.subLinks?.map((subLink) => (
                           <CommandItem key={subLink.title}>
                             <Link
-                              to={subLink.path}
+                              to={"/patterns/" + subLink.path}
                               className="flex items-center "
                             >
                               <subLink.icon className="w-5 h-5 me-2" />
@@ -86,7 +86,7 @@ const Header = () => {
           </div>
         </form>
         <Button variant="secondary" size="icon" className="rounded-full">
-          <Link to="https://github.com/DoffuXx/DPattern">
+          <Link target="_blank" to="https://github.com/DoffuXx/DPattern">
             <GitHubLogoIcon className="h-5 w-5" />
           </Link>
         </Button>
