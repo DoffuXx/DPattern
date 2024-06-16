@@ -152,7 +152,6 @@ const initialNodes: NodeData[] = [
       border: "2px solid #000",
       width: 600,
       zIndex: -1,
-
       height: 450,
     },
   },
