@@ -1,6 +1,6 @@
 import navLinks from "@/registry/app/navLinks";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 const SideMenu = () => {
   return (
@@ -21,13 +21,16 @@ const SideMenu = () => {
                   <ul id={`dropdown-${link.title}`} className="space-y-2 mt-1">
                     {link.subLinks.map((subLink) => (
                       <li key={subLink.title}>
-                        <Link
+                        <NavLink
                           to={subLink.path}
                           className="flex items-center w-full p-2 text-gray-900 transition text-sm duration-75 pl-6 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                          style={({ isActive }) => ({
+                            fontWeight: isActive ? "bold" : "",
+                          })}
                         >
                           <subLink.icon className="w-5 h-5 me-2" />
                           {subLink.title}
-                        </Link>
+                        </NavLink>
                       </li>
                     ))}
                   </ul>
