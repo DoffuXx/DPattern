@@ -227,7 +227,7 @@ const Factory = () => {
     [setEdges],
   );
   return (
-    <div style={{ height: 600 }}>
+    <div className="h-screen w-[58rem]">
       <ReactFlow
         nodes={nodes}
         edges={edges}
