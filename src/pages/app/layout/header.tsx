@@ -40,13 +40,14 @@ const Header = () => {
   };
   return (
     <header className="sticky font-work-sans z-50 top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <nav className=" flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <div className="text-foreground transition-colors hover:text-foreground  ">
-          <Link to="/" className="flex space-x-3 align-items">
-            <img src="/img/logo/dpatternicon.png" className="h-6 w-6" alt="" />
-            <span className="text-sm md:text-xl font-bold ">DPattern</span>
-          </Link>
-        </div>
+      <nav className=" flex-col  items-center gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-8">
+        <Link
+          to="/"
+          className="flex space-x-3 align-items text-foreground transition-colors hover:text-foreground"
+        >
+          <img src="/img/logo/dpatternicon.png" className="h-6 w-6" alt="" />
+          <span className="text-sm md:text-xl font-bold ">DPattern</span>
+        </Link>
       </nav>
       <div className="flex w-full items-center gap-4 ml-4 md:ml-auto md:gap-2 lg:gap-4">
         <form className="ml-auto flex-1 sm:flex-initial">

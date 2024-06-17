@@ -12,8 +12,8 @@ interface UmlNodeData {
 let ClickedNodeDisplay = true;
 const UmlNode: React.FC<NodeProps<UmlNodeData>> = (props) => {
   const { data } = props;
-  const ClickedNode = () => {
-    console.log(ClickedNodeDisplay);
+  const ClickedNode = (e: any) => {
+    e.persist();
     if (ClickedNodeDisplay) {
       ClickedNodeDisplay = false;
       return false;

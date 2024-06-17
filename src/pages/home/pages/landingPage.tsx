@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Buttonv3 } from "@/components/ui/buttonV3";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
@@ -33,7 +34,7 @@ const LandingPage = () => {
               {/* Buttons */}
               <div className="mt-8 gap-3 flex justify-center">
                 <Link to="/patterns/factory">
-                  <Button size={"lg"}>Browse Patterns</Button>
+                  <Buttonv3 size="lg">Browse Patterns</Buttonv3>
                 </Link>
                 <Button size={"lg"} variant={"outline"}>
                   Learn more
