@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Dialog, DialogPortal, DialogTrigger } from "@/components/ui/dialog";
 import navLinks from "@/registry/app/navLinks";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -26,21 +27,29 @@ const Header = () => {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(
+    localStorage.getItem("dark") === "true" ? true : false,
+  );
   useEffect(() => {
-    // Apply the dark mode class based on the state
     if (dark) {
       document.body.classList.add("dark");
+      localStorage.setItem("dark", "true");
     } else {
       document.body.classList.remove("dark");
+      localStorage.setItem("dark", "false");
     }
   }, [dark]);
   const darkModeHandler = () => {
     setDark((prevDark) => !prevDark);
   };
   return (
-    <header className="sticky font-work-sans z-50 top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <nav className=" flex-col  items-center gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-8">
+    <header className="sticky font-work-sans z-50 top-0 flex h-16 items-center gap-4 border-b  px-4 md:px-6 bg-background/40 backdrop-blur-lg">
+      <motion.nav
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, ease: "easeOut" }}
+        className=" flex-col  items-center gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-8"
+      >
         <Link
           to="/"
           className="flex space-x-3 align-items text-foreground transition-colors hover:text-foreground"
@@ -48,8 +57,13 @@ const Header = () => {
           <img src="/img/logo/dpatternicon.png" className="h-6 w-6" alt="" />
           <span className="text-sm md:text-xl font-bold ">DPattern</span>
         </Link>
-      </nav>
-      <div className="flex w-full items-center gap-4 ml-4 md:ml-auto md:gap-2 lg:gap-4">
+      </motion.nav>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, ease: "easeOut" }}
+        className="flex w-full items-center gap-4 ml-4 md:ml-auto md:gap-2 lg:gap-4"
+      >
         <form className="ml-auto flex-1 sm:flex-initial">
           <div className="relative ">
             <Dialog open={open} onOpenChange={setOpen}>
@@ -99,7 +113,7 @@ const Header = () => {
         >
           {dark ? <MoonIcon /> : <SunIcon />}
         </Button>
-      </div>
+      </motion.div>
     </header>
   );
 };
