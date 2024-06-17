@@ -17,13 +17,13 @@ const SideMenu = () => {
               <ScrollArea.Viewport className="ScrollAreaViewport">
                 {navLinks.map((link) => (
                   <li key={link.title}>
-                    <p className="text-sm font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
+                    <p className="text-sm my-2 font-work-sans font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
                       {link.title}
                     </p>
                     {link.subLinks && (
                       <ul
                         id={`dropdown-${link.title}`}
-                        className="space-y-2 mt-1"
+                        className="space-y-2 mt-1 font-work-sans"
                       >
                         {link.subLinks.map((subLink) => (
                           <li key={subLink.title}>
@@ -31,7 +31,7 @@ const SideMenu = () => {
                               to={subLink.path}
                               className="flex items-center w-full p-2 text-gray-900 transition text-sm duration-75 pl-6 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                               style={({ isActive }) => ({
-                                fontWeight: isActive ? "bold" : "",
+                                fontWeight: isActive ? "600" : "",
                               })}
                             >
                               <subLink.icon className="w-5 h-5 me-2" />

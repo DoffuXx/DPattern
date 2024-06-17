@@ -36,9 +36,11 @@ const LandingPage = () => {
                 <Link to="/patterns/factory">
                   <Buttonv3 size="lg">Browse Patterns</Buttonv3>
                 </Link>
-                <Button size={"lg"} variant={"outline"}>
-                  Learn more
-                </Button>
+                <Link to="/patterns/introduction">
+                  <Button size={"lg"} variant={"outline"}>
+                    Learn more
+                  </Button>
+                </Link>
               </div>
               {/* End Buttons */}
             </div>
