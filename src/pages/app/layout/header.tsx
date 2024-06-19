@@ -16,6 +16,7 @@ import navLinks from "@/registry/app/navLinks";
 import { motion } from "framer-motion";
 
 const Header = () => {
+  const easeV = [0.43, 0.13, 0.23, 0.96];
   const [open, setOpen] = useState(false);
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -47,7 +48,7 @@ const Header = () => {
       <motion.nav
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, ease: "easeOut" }}
+        transition={{ delay: 0.3, ease: easeV }}
         className=" flex-col  items-center gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-8"
       >
         <Link
@@ -61,7 +62,7 @@ const Header = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, ease: "easeOut" }}
+        transition={{ delay: 0.3, ease: easeV }}
         className="flex w-full items-center gap-4 ml-4 md:ml-auto md:gap-2 lg:gap-4"
       >
         <form className="ml-auto flex-1 sm:flex-initial">

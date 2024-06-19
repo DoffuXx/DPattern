@@ -4,6 +4,7 @@ import { Buttonv3 } from "@/components/ui/buttonV3";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
+  const easeV = [0.43, 0.13, 0.23, 0.96];
   return (
     <div>
       <div className="relative overflow-hidden py-12 lg:py-16">
@@ -16,7 +17,7 @@ const LandingPage = () => {
               <motion.img
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, ease: "easeOut" }}
+                transition={{ delay: 0.1, ease: easeV }}
                 src="/img/logo/dpatternicon.png"
                 className="h-12 w-12 m-auto"
                 alt=""
@@ -25,7 +26,7 @@ const LandingPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, ease: "easeOut" }}
+                transition={{ delay: 0.2, ease: easeV }}
                 className="mt-5 max-w-2xl"
               >
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
@@ -36,7 +37,7 @@ const LandingPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, ease: "easeOut" }}
+                transition={{ delay: 0.5, ease: easeV }}
                 className="mt-5 max-w-3xl"
               >
                 <p className="text-xl text-muted-foreground">
@@ -49,7 +50,7 @@ const LandingPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, ease: "easeOut" }}
+                transition={{ delay: 0.8, ease: easeV }}
                 className="mt-8 gap-3 flex justify-center"
               >
                 <Link to="/patterns/factory">
