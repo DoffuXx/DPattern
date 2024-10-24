@@ -11,14 +11,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 type NodeData = {
   id: string;
   data: {
     label: string | null;
-    attributes?:
-      | { name: string; type: string; visibility: string }[]
-      | undefined;
-    methods?: { name: string; type: string; visibility: string }[] | undefined;
+    attributes?: { name: string; type: string; visibility: string }[];
+    methods?: { name: string; type: string; visibility: string }[];
   };
   position: { x: number; y: number };
   type?: string;
@@ -32,6 +31,7 @@ interface CodeDisplayComponentProps {
   language: string;
   showLineNumbers: boolean;
 }
+
 const themes = [
   { label: "Dracula", value: "dracula" },
   { label: "A11y Dark", value: "a11y-dark" },
@@ -48,7 +48,7 @@ const CodeDisplayComponent: React.FC<CodeDisplayComponentProps> = ({
   const [isOpen, setIsOpen] = useState(true);
   const [theme, setTheme] = useState(dracula);
 
-  const handelChangeTheme = async (e: any) => {
+  const handelChangeTheme = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const theme = e.target.value;
     setTheme(getThemeByName(theme));
     try {
@@ -56,57 +56,57 @@ const CodeDisplayComponent: React.FC<CodeDisplayComponentProps> = ({
       console.log(err);
     }
   };
-  return (
-    <div>
-      {isOpen && (
-        <>
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline">Edit Profile</Button>
-            </DialogTrigger>
-            <DialogContent className="w-3/4">
-              <DialogHeader>
-                <DialogTitle>{node.data.label}</DialogTitle>
-                {/* <DialogDescription> */}
-                {/*   Make changes to your profile here. Click save when you're */}
-                {/*   done. */}
-                {/* </DialogDescription> */}
-              </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <CopyBlock
-                  text={node.code || "No Code Available"}
-                  language={language}
-                  showLineNumbers={showLineNumbers}
-                  theme={theme}
-                />
 
-                <div>
-                  <span>Select Theme:</span>
-                  <div>
-                    <select
-                      value={theme.lineNumberColor}
-                      onChange={handelChangeTheme}
-                      className="border border-gray-300 rounded-md"
-                    >
-                      {themes.map((theme) => (
-                        <option key={theme.value} value={theme.value}>
-                          {theme.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+  return (
+    <div className="w-full">
+      {isOpen && (
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="w-11/12 max-w-5xl mx-auto max-h-[90vh] overflow-y-auto sm:w-4/5 lg:w-3/4">
+            <DialogHeader className="space-y-2">
+              <DialogTitle className="text-xl font-semibold">
+                {node.data.label}
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="flex flex-col space-y-4 py-4">
+              <div className="relative w-full overflow-hidden rounded-lg border">
+                <div className="absolute right-2 top-2 z-10 flex items-center space-x-2">
+                  <select
+                    value={theme.lineNumberColor}
+                    onChange={handelChangeTheme}
+                    className="rounded-md border bg-background px-2 py-1 text-sm"
+                  >
+                    {themes.map((theme) => (
+                      <option key={theme.value} value={theme.value}>
+                        {theme.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="mt-10">
+                  <CopyBlock
+                    text={node.code || "No Code Available"}
+                    language={language}
+                    showLineNumbers={showLineNumbers}
+                    theme={theme}
+                  />
                 </div>
               </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </>
+            </div>
+
+            <DialogFooter className="sm:justify-between">
+              <DialogClose asChild>
+                <Button variant="outline" className="w-full sm:w-auto">
+                  Close
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       )}
     </div>
   );
 };
+
 export default CodeDisplayComponent;

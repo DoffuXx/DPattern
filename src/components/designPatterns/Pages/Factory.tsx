@@ -1,21 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
-import ReactFlow, {
-  Node,
+import {
   addEdge,
-  Background,
   MarkerType,
-  BackgroundVariant,
   Connection,
-  CoordinateExtent,
-  Controls,
   Edge,
-  MiniMap,
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { ToastContainer, toast, Bounce } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "reactflow/dist/style.css";
+import { toast, Bounce } from "react-toastify";
 import {
   CircleCode,
   FactoyPatternDemoCode,
@@ -24,28 +16,14 @@ import {
   ShapeFactoryCode,
   SquareCode,
 } from "@/constants/FactoryCode";
-import { UmlNode, CodeDisplayComponent } from "../components";
+import { CodeDisplayComponent, UmlNode } from "../components";
+import { NodeData } from "@/utils/types";
+import FlowDiagram from "../components/reactFlowApplication";
+
 const nodeTypes = {
   uml: UmlNode,
 };
 
-type NodeData = {
-  id: string;
-  data: {
-    label: string | null;
-    attributes?:
-      | { name: string; type: string; visibility: string }[]
-      | undefined;
-    methods?: { name: string; type: string; visibility: string }[] | undefined;
-  };
-  position: { x: number; y: number };
-  type?: Node["type"];
-  isClicked?: boolean;
-  parentNode?: string;
-  extent?: "parent" | CoordinateExtent;
-  style?: any;
-  code?: string;
-};
 const initialNodes: NodeData[] = [
   {
     id: "1",
@@ -54,15 +32,13 @@ const initialNodes: NodeData[] = [
       attributes: [
         { name: "", type: "", visibility: "" },
         { name: "", type: "", visibility: "" },
-      ], // add attributes field
+      ],
       methods: [{ name: "draw()", type: "void", visibility: "+" }],
     },
     code: CircleCode,
     parentNode: "8",
-
     type: "uml",
     extent: "parent",
-
     position: { x: 10, y: 250 },
   },
   {
@@ -72,15 +48,13 @@ const initialNodes: NodeData[] = [
       attributes: [
         { name: "", type: "", visibility: "" },
         { name: "", type: "", visibility: "" },
-      ], // add attributes field
+      ],
       methods: [{ name: "draw()", type: "void", visibility: "+" }],
     },
-
     type: "uml",
     code: SquareCode,
     parentNode: "8",
     extent: "parent",
-
     position: { x: 450, y: 250 },
   },
   {
@@ -90,7 +64,7 @@ const initialNodes: NodeData[] = [
       attributes: [
         { name: "", type: "", visibility: "" },
         { name: "", type: "", visibility: "" },
-      ], // add attributes field
+      ],
       methods: [{ name: "draw()", type: "void", visibility: "+" }],
     },
     code: ractangleCode,
@@ -106,7 +80,7 @@ const initialNodes: NodeData[] = [
       attributes: [
         { name: "", type: "", visibility: "" },
         { name: "", type: "", visibility: "" },
-      ], // add attributes field
+      ],
       methods: [{ name: "draw()", type: "void", visibility: "+" }],
     },
     type: "uml",
@@ -122,7 +96,7 @@ const initialNodes: NodeData[] = [
       attributes: [
         { name: "", type: "", visibility: "" },
         { name: "", type: "", visibility: "" },
-      ], // add attributes field
+      ],
       methods: [{ name: "getShape()", type: "Shape", visibility: "+" }],
     },
     position: { x: 700, y: 500 },
@@ -136,14 +110,13 @@ const initialNodes: NodeData[] = [
       attributes: [
         { name: "", type: "", visibility: "" },
         { name: "", type: "", visibility: "" },
-      ], // add attributes field
+      ],
       methods: [{ name: "main()", type: "void", visibility: "+" }],
     },
     position: { x: 700, y: 100 },
     code: FactoyPatternDemoCode,
     type: "uml",
   },
-
   {
     id: "8",
     data: { label: "Factory Pattern" },
@@ -156,6 +129,7 @@ const initialNodes: NodeData[] = [
     },
   },
 ];
+
 const initialEdges = [
   {
     id: "e4-1",
@@ -193,75 +167,49 @@ const initialEdges = [
     animated: false,
   },
 ];
+
 const Factory = () => {
   useEffect(() => {
-    const notify = () =>
-      toast(
-        "🚀 Explore the code by clicking on the Title Node. Happy coding!",
-        {
-          position: "bottom-right",
-          autoClose: 8000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce,
-        },
-      );
-    notify();
+    toast("🚀 Explore the code by clicking on the Title Node. Happy coding!", {
+      position: "bottom-right",
+      autoClose: 8000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
   }, []);
+
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [clickedNode, setClickedNode] = useState<NodeData | null>(null); // Add this line
+  const [clickedNode, setClickedNode] = useState<NodeData | null>(null);
 
   const handleNodeClick = (event: React.MouseEvent, element: NodeData) => {
     if (element.type === "uml") {
       setClickedNode((prev) => (prev?.id === element.id ? null : element));
     }
   };
+
   const onConnect = useCallback(
-    (params: Edge<any> | Connection) => setEdges((eds) => addEdge(params, eds)),
+    (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
+
   return (
-    <div className="h-screen w-[58rem]">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        nodeTypes={nodeTypes}
-        onNodeClick={handleNodeClick}
-      >
-        <Controls />
-        <MiniMap />
-        <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-      </ReactFlow>
-      {clickedNode && (
-        <CodeDisplayComponent
-          node={clickedNode}
-          onClose={() => setClickedNode(null)}
-          language="java"
-          showLineNumbers={true}
-        />
-      )}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
-    </div>
+    <FlowDiagram
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      onConnect={onConnect}
+      nodeTypes={nodeTypes}
+      onNodeClick={handleNodeClick}
+      CodeDisplayComponent={CodeDisplayComponent}
+      clickedNode={clickedNode}
+    />
   );
 };
 
