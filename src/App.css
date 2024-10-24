@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-flow__node {
+  @apply transition-transform duration-200 ease-in-out;
+}
+
+.react-flow__node:hover {
+  @apply scale-105;
+}
+
+.react-flow__controls {
+  @apply !rounded-lg !border-none !shadow-lg;
+}
+
+.react-flow__controls button {
+  @apply !rounded-lg !border-none !bg-white/80 !transition-all hover:!bg-white;
+}
+
+.react-flow__minimap {
+  @apply !rounded-lg !border-none !shadow-lg;
+}
+
+.react-flow__attribution {
+  @apply !hidden;
+}
+
+/* For touch devices */
+@media (pointer: coarse) {
+  .react-flow__controls button {
+    @apply !h-12 !w-12;
+  }
+
+  .react-flow__minimap {
+    @apply !h-32 !w-48;
+  }
+}
+
+/* Responsive container queries */
+@container (max-width: 768px) {
+  .react-flow__node {
+    @apply scale-90;
+  }
+}
+
+@container (min-width: 769px) {
+  .react-flow__node {
+    @apply scale-100;
+  }
+}
+
