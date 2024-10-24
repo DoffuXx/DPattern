@@ -2,10 +2,11 @@ import { NavLinks } from "./schema";
 import {
   IconBuildingFactory2,
   IconPencilPlus,
+  IconRuler2,
   IconStar,
   IconTargetArrow,
 } from "@tabler/icons-react";
-import { Factory } from "@/components/designPatterns/Pages";
+import { Builder, Factory } from "@/components/designPatterns/Pages";
 import Introduction from "@/components/designPatterns/Pages/Introduction";
 
 const navLinks: NavLinks[] = [
@@ -30,6 +31,12 @@ const navLinks: NavLinks[] = [
         path: "factory",
         icon: IconBuildingFactory2,
         element: <Factory />,
+      },
+      {
+        title: "Builder",
+        path: "builder",
+        icon: IconRuler2,
+        element: <Builder />,
       },
     ],
   },
